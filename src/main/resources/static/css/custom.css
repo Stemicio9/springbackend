@@ -459,8 +459,8 @@ button, input, select, textarea {
 #benvenuto
 {
 
-    background-image:url('../images/sfondowin.jpg');
-    background-color:#fff;
+    background-image:url('../images/sfondowinblu.png');
+    background-color:none;
     padding-top: 15%;
     padding-bottom:25%;
 
@@ -484,11 +484,115 @@ p.lead
 .white
 {color: #ffffff;}
 
+
+.logo
+{
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    margin: 10px 0px 27px 40px;
+    position: absolute;
+    float: left;
+    background: url('../images/logoWinOr200px.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+#offertelavoro
+{
+    padding: 20px 80p 80px 20px;
+    margin-top: 30px;
+}
+
+#downloadapp
+{
+    background: #27597c;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
+}
+
+footer
+{
+    background: #fff;
+
+}
+.celeste
+{color:#5bc0de;
+    line-height: 0.88rem;}
+
+
+/* Global */
+
+
+img { max-width:100%; }
+
+
+.thumbnails li> .fff .caption {
+    background:#fff !important;
+    padding:5px;
+    margin-bottom: 20px;
+}
+
+/* Page Header */
+.page-header {
+    background: #f9f9f9;
+    padding: 20px 40px;
+    border-top: 8px solid #5bc0de;
+    color: #999;
+    text-transform: uppercase;
+}
+
+
+
+ul.thumbnails {
+    margin-bottom: 0px;
+}
+
+
+
+/* Thumbnail Box */
+.caption h4 {
+    color: #444;
+}
+
+.caption p {
+    color: #999;
+}
+
+
+
+/* Carousel Control */
+.control-box {
+    text-align: right;
+    width: 100%;
+}
+.carousel-control{
+    background: #666;
+    border: 0px;
+    border-radius: 0px;
+    display: inline-block;
+    font-size: 34px;
+    font-weight: 200;
+    line-height: 18px;
+    opacity: 0.5;
+    padding: 4px 10px 0px;
+    position: static;
+    height: 30px;
+    width: 15px;
+}
+
+
+
+li { list-style-type:none;}
+
 /********************************/
 /*          Media Queries       */
 /********************************/
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 767px){
   .btn-facebook
 {
     background-color: #3F639E;
@@ -496,24 +600,34 @@ p.lead
     font-weight:bold;
     margin: 10px 0px;
 }
-  
+
+    .logo
+    {
+        width: 130px;
+        height: 30px;
+        text-align: center;
+        margin: 10px 0px 27px 40px;
+        position: relative;
+        float: left;
+        background: url('../images/logoWinOr200px.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
 }
 
-@media screen and (min-width: 980px){
+@media screen and (min-width: 979px){
     
 } 
 }
 
 
 
-@media screen and (max-width: 768px){
-
-}
-}
 
 
 
-@media screen and (max-width: 640px){
+
+@media screen and (max-width: 639px){
    
 }
 

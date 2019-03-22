@@ -17,6 +17,12 @@ function openCity(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
+// Carousel Auto-Cycle
+$(document).ready(function() {
+  $('.carousel').carousel({
+    interval: 5000
+  })
+});
 
 
 
