@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incentivi termici</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+
+    <script>
+
+
+        window.onload = function() {
+            stamparegioninuovo();
+            prendiprodotti();
+        };
+
+        function stamparegioninuovo() {
+            var excelUrl = "zone";
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        prenditutteleregioni(e.target.result);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+   /*             excelIO.open(blob, LoadSpread, function (message) {
+                    console.log(message);
+                }); */
+            };
+            oReq.send(null);
+        }
+
+
+        function prendiprodotti(){
+            var excelUrl = "incentivifile";
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        riempiprodotti(e.target.result);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+                /*             excelIO.open(blob, LoadSpread, function (message) {
+                                 console.log(message);
+                             }); */
+            };
+            oReq.send(null);
+        }
+
+
+        function riempiprodotti(data){
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+            var listaregioni = [];
+
+            for (var i = 0; i < excelRows.length; i++) {
+                var attuale =  excelRows[i].Nomeprodotto;
+                // console.log(attuale);
+                if(!contienegia(listaregioni,attuale)) {
+                    listaregioni.push(attuale);
+                    aggiungiprodotti(attuale);
+                }
+            }
+
+
+            console.log(listaregioni);
+        }
+
+
+
+        function aggiungiprodotti(nomeregione) {
+            var ddl = document.getElementById("prodotti");
+            var option = document.createElement("OPTION");
+            option.innerHTML = nomeregione;
+            option.value = nomeregione;
+            ddl.options.add(option);
+        }
+
+
+
+        function prenditutteleregioni(data){
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+            var listaregioni = [];
+
+            for (var i = 0; i < excelRows.length; i++) {
+                var attuale =  excelRows[i].Regione;
+               // console.log(attuale);
+                if(!contienegia(listaregioni,attuale)) {
+                    listaregioni.push(attuale);
+                    aggiungiregione(attuale);
+                }
+            }
+
+
+            console.log(listaregioni);
+
+
+
+        }
+
+        function aggiungiregione(nomeregione) {
+            var ddl = document.getElementById("regioni");
+            var option = document.createElement("OPTION");
+            option.innerHTML = nomeregione;
+            option.value = nomeregione;
+            ddl.options.add(option);
+        }
+
+
+        function svuotatutto(){
+            var prov = document.getElementById("province");
+
+            for(var i = prov.options.length - 1 ; i >= 0 ; i--)
+            {
+                prov.remove(i);
+            }
+            var com = document.getElementById("comuni");
+            for(var i = com.options.length - 1 ; i >= 0 ; i--)
+            {
+                com.remove(i);
+            }
+        }
+
+
+        function svuotacomuni(){
+            var com = document.getElementById("comuni");
+            for(var i = com.options.length - 1 ; i >= 0 ; i--)
+            {
+                com.remove(i);
+            }
+        }
+
+
+        function stampaprovincenuovo() {
+            svuotatutto();
+            var excelUrl = "zone";
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        var regione = document.getElementById("regioni").value;
+                        pprenditutteleprovincediregione(e.target.result, regione);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+                /*             excelIO.open(blob, LoadSpread, function (message) {
+                                 console.log(message);
+                             }); */
+            };
+            oReq.send(null);
+        }
+
+
+        function pprenditutteleprovincediregione(data,regionescelta){
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+            var listaregioni = [];
+
+            for (var i = 0; i < excelRows.length; i++) {
+                var regioneattuale =  excelRows[i].Regione;
+                if(regioneattuale === regionescelta) {
+
+                    var attuale = excelRows[i].Provincia;
+                    if (!contienegia(listaregioni, attuale)) {
+                        listaregioni.push(attuale);
+                        aggiungiprovincia(attuale);
+                    }
+                }
+            }
+
+
+            console.log(listaregioni);
+        }
+
+        function aggiungiprovincia(nomeregione) {
+            var ddl = document.getElementById("province");
+            var option = document.createElement("OPTION");
+            option.innerHTML = nomeregione;
+            option.value = nomeregione;
+            ddl.options.add(option);
+        }
+
+
+
+
+        function stampacomuninuovo() {
+            var excelUrl = "zone";
+            svuotacomuni();
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        var regione = document.getElementById("province").value;
+                        prenditutticomunidiprovincia(e.target.result, regione);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+
+            };
+            oReq.send(null);
+        }
+
+
+
+        function prenditutticomunidiprovincia(data,provinciascelta){
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+            var listaregioni = [];
+
+            for (var i = 0; i < excelRows.length; i++) {
+                var regioneattuale =  excelRows[i].Provincia;
+                if(regioneattuale === provinciascelta) {
+
+                    var attuale = excelRows[i].Comune;
+                    if (!contienegia(listaregioni, attuale)) {
+                        listaregioni.push(attuale);
+                        aggiungicomune(attuale);
+                    }
+                }
+            }
+
+
+
+        }
+
+
+        function aggiungicomune(nomeregione) {
+            var ddl = document.getElementById("comuni");
+            var option = document.createElement("OPTION");
+            option.innerHTML = nomeregione;
+            option.value = nomeregione;
+            ddl.options.add(option);
+        }
+
+
+        function contienegia(array,valore){
+            for(var i = 0; i<array.length; i++){
+                if(array[i] === valore){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function vediizonancentivo(){
+            var excelUrl = "zone";
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        var comune = document.getElementById("comuni").value;
+                        prendizonaincentivo(e.target.result, comune);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+                /*             excelIO.open(blob, LoadSpread, function (message) {
+                                 console.log(message);
+                             }); */
+            };
+            oReq.send(null);
+        }
+
+
+        function prendizonaincentivo(data,comunescelto){
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+            console.log(excelRows.length);
+            console.log(excelRows);
+
+            for (var i = 0; i < excelRows.length; i++) {
+                var regioneattuale =  excelRows[i].Comune;
+
+
+                if(regioneattuale === comunescelto) {
+
+                    console.log("CIAO");
+
+                    var attuale = excelRows[i].Zonaclimatica;
+                    document.getElementById("nomeincentivo").textContent = attuale;
+
+                }
+            }
+        }
+
+        function prendiincentivofile(){
+            var excelUrl = "incentivifile";
+
+            var oReq = new XMLHttpRequest();
+            oReq.open('get', excelUrl, true);
+            oReq.responseType = 'blob';
+            oReq.onload = function () {
+                var blob = oReq.response;
+
+
+
+                var reader = new FileReader();
+
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+
+                        var zonaclimatica =  document.getElementById("nomeincentivo").textContent;
+                        prendivaloreincentivo(e.target.result, zonaclimatica);
+                    };
+                    reader.readAsBinaryString(blob);
+                }
+                /*             excelIO.open(blob, LoadSpread, function (message) {
+                                 console.log(message);
+                             }); */
+            };
+            oReq.send(null);
+        }
+
+
+        function prendivaloreincentivo(data, zonaclimatica){
+
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            //Fetch the name of First Sheet.
+            var firstSheet = workbook.SheetNames[0];
+
+            //Read all rows from First Sheet into an JSON array.
+            var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+
+            var prodotto = document.getElementById("prodotti").value;
+            var valoreincentivo;
+            for (var i = 0; i < excelRows.length; i++) {
+                if(excelRows[i].Nomeprodotto === prodotto) {
+                    switch (zonaclimatica) {
+                        case "A":
+                            valoreincentivo = excelRows[i].A;
+                            break;
+                        case "B":
+                            valoreincentivo = excelRows[i].B;
+                            break;
+                        case "C":
+                            valoreincentivo = excelRows[i].C;
+                            break;
+                        case "D":
+                            valoreincentivo = excelRows[i].D;
+                            break;
+                        case "E":
+                            valoreincentivo = excelRows[i].E;
+                            break;
+                        case "F":
+                            valoreincentivo = excelRows[i].F;
+                            break;
+                    }
+                }
+            }
+
+            document.getElementById("valoreincentivo").textContent = "INCENTIVO MASSIMO EROGABILE : " + valoreincentivo;
+
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+<!--<input type="file" id="fileUpload" />
+<input type="button" id="upload" value="Upload" onclick="stamparegioninuovo()" /> -->
+<hr />
+<div id="dvExcel" class="container"></div>
+
+<div class="col-md-9">
+<label>Regione</label>
+<select id = "regioni" onchange="stampaprovincenuovo()"></select>
+</div>
+
+<div class="col-md-9">
+<label>Provincia</label>
+<select id = "province" onchange="stampacomuninuovo()"></select>
+</div>
+
+<div class="col-md-9">
+<label>Comune</label>
+<select id = "comuni" onchange="vediizonancentivo()"></select>
+</div>
+
+<div class="col-md-9">
+<label>Prodotto</label>
+<select id = "prodotti" onchange="prendiincentivofile()"></select>
+</div>
+
+<hr />
+
+<div class="col-md-9">
+<span id="nomeincentivo"> </span>
+</div>
+
+<div class="col-md-9">
+<span id="valoreincentivo"> </span>
+</div>
+
+
+</body>
+</html>

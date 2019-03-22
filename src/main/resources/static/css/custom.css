@@ -1,0 +1,519 @@
+
+/* Palette colori =====
+
+
+/*  FONTS =======
+
+font-family: 'Raleway', sans-serif;
+
+*/
+
+
+
+body 
+{
+ font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    overflow:inherit;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45a0a3+0,27597c+50,27597c+51,45a0a3+100 */
+background: #45a0a3; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #45a0a3 0%, #27597c 50%, #27597c 51%, #45a0a3 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #45a0a3 0%,#27597c 50%,#27597c 51%,#45a0a3 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #45a0a3 0%,#27597c 50%,#27597c 51%,#45a0a3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45a0a3', endColorstr='#45a0a3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+a:hover
+{
+    cursor: pointer;
+}
+
+
+
+h1
+{
+   font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+   -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+    font-size: 3em;
+    color: #000;
+    margin: 0px 0px 10px;
+   
+    
+    
+   
+}
+
+h2, h3,h4, h5
+
+{
+
+    font-family: 'Raleway', sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+    padding: 0px 0px 0px;
+
+    font-weight: bold;
+
+
+}
+
+
+
+
+
+#logo
+{
+   
+    float: left;
+    margin-top: 20px;
+    width: 250px;
+    float: left;
+    left: 20px;
+    margin: 0 auto;
+    padding:10px 10px;
+    position: relative;
+}
+
+
+
+.navbar {
+    position: relative;
+    min-height: 70px;
+    margin-bottom: 2px;
+    border: none;
+}
+
+.checkbox input[type=checkbox]
+{width: auto;
+}
+
+#header 
+{
+ 
+  position: relative;
+    width: 100%;
+    padding: 40px 40px 40px;
+    z-index: 999;
+    }
+
+.fullWidthBlue
+{
+  background-color:#27597c;
+  width:100%; 
+}
+
+
+input
+{
+   font-family: 'Raleway', sans-serif;
+    width: 100%;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    
+   font-family: 'Raleway', sans-serif;
+     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+}
+.form-inline .form-control {
+    display: block;
+    
+   padding: 20px;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+.btn-info
+{
+    text-transform: uppercase;
+    font-size: 0.7em;
+    background-color: #5bc0de;
+    border:1px solid white;
+
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active
+{
+    background-color: #27597c;
+    border:1px solid #5bc0de;
+}
+
+
+
+.navbar-brand img
+{
+    max-width: 10%;
+}
+
+
+
+
+
+/*NAV BAR*/
+.navbar-nav
+{
+    font-family: 'Raleway', sans-serif;
+    font-size: .9em;
+}
+
+.fa.fa-facebook,
+.fa.fa-instagram,
+.fa.fa-youtube,
+.fab.fa-tripadvisor
+
+{
+    color: white;
+
+    
+}
+
+.fas 
+{-webkit-animation-iteration-count:infinite;}
+
+
+.fa, .fab
+{
+    padding: 5px;
+}
+
+
+.fa.fa-facebook:hover,
+.fa.fa-facebook:active,
+.fa.fa-facebook:focus,
+.fa.fa-instagram:hover,
+.fa.fa-instagram:active,
+.fa.fa-instagram:focus,
+.fa.fa-youtube:hover,
+.fa.fa-youtube:active,
+.fa.fa-youtube:focus,
+.fab.fa-tripadvisor:hover,
+.fab.fa-tripadvisor:active,
+.fab.fa-tripadvisor:focus,
+.fab .fa-instagram:hover,
+.fab .fa-instagram:focus,
+.fab .fa-instagram:active
+
+{
+    color: #960018;
+    cursor: pointer;
+}
+
+
+
+.icone {
+    
+    
+    float: left;
+   position: fixed;
+    right: 10px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    padding-right: 20px;
+    z-index: 9999;
+    margin: 0 auto;
+    width: 50px;
+    top: 10px;
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    color: white;
+    border: 1px solid #fff;
+    
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+ font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+   -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+    padding: 10px 0px;
+}
+
+.navbar-nav>li>a
+{
+  color: white;
+  font-size: 1,6em;
+  font-weight: bold;
+  position: relative;
+    margin: -5px;
+    padding: 5px 5px;
+}
+
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus,
+.navbar-nav>li>a:active
+{
+  background-color: white;
+  color: #960018;
+}
+
+.navbar-collapse {
+    
+    padding: 10px 10px;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+    border-top: none;
+    
+}
+
+
+.navbar .navbar-collapse {
+  text-align: center;
+  
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  
+}
+
+#sceltaUtenteWin a:hover, #sceltaUtenteWin a:active, #sceltaUtenteWin a:focus 
+{
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#sceltaUtenteWin img 
+{max-width: 30%;}
+
+#registrazionewin, #sceltaUtenteWin
+{
+  background-color: white;
+  padding: 20px 40px 20px 40px;
+}
+
+#registrazionewin2
+{
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+}
+
+
+#loginWin
+{
+  padding: 20px 40px 20px 40px;
+}
+
+.account-box
+{
+    border: 2px solid rgba(153, 153, 153, 0.75);
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -o-border-radius: 2px;
+    z-index: 3;
+    font-size: 13px !important;
+    font-family: "Helvetica Neue" ,Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.logo
+{
+    width: 138px;
+    height: 30px;
+    text-align: center;
+    margin: 10px 0px 27px 40px;
+    background-position: 0px -4px;
+    position: relative;
+}
+
+.forgotLnk
+{
+    margin-top: 10px;
+    display: block;
+}
+
+.blue-bg
+{
+    background-color: #27597c;
+    color: #fff;
+}
+.or-box
+{
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+    margin-top:20px;
+}
+.or
+{
+    color: #666666;
+    background-color: #ffffff;
+    position: absolute;
+    text-align: center;
+    top: -8px;
+    width: 95px;
+    left: 60px;
+}
+.account-box .btn:hover
+{
+    color: #fff;
+}
+.btn-facebook
+{
+    background-color: #3F639E;
+    color: #fff;
+    font-weight:bold;
+ 
+}
+.btn-google
+{
+    background-color: #454545;
+    color: #fff;
+    font-weight:bold;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #45A0A3;
+    border-color: #45A0A3;
+}
+
+.btn-primary:hover,.btn-primary:active,.btn-primary:focus
+{
+  background-color: #27597c;
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 100%;
+}
+
+.tablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    width: 100%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+#benvenuto
+{
+
+    background-image:url('../images/sfondowin.jpg');
+    background-color:#fff;
+    padding-top: 15%;
+    padding-bottom:25%;
+
+    width: 100vw;
+    height: 60vh;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+   background-position: center center;
+
+}
+
+p.lead
+{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+}
+
+.white
+{color: #ffffff;}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+
+@media only screen and (max-width: 768px){
+  .btn-facebook
+{
+    background-color: #3F639E;
+    color: #fff;
+    font-weight:bold;
+    margin: 10px 0px;
+}
+  
+}
+
+@media screen and (min-width: 980px){
+    
+} 
+}
+
+
+
+@media screen and (max-width: 768px){
+
+}
+}
+
+
+
+@media screen and (max-width: 640px){
+   
+}
+
