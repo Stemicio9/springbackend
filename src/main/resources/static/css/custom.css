@@ -532,7 +532,7 @@ img { max-width:100%; }
 
 .thumbnails li> .fff .caption {
     background:#fff !important;
-    padding:5px;
+    padding:10px;
     margin-bottom: 20px;
 }
 
@@ -549,6 +549,7 @@ img { max-width:100%; }
 
 ul.thumbnails {
     margin-bottom: 0px;
+    padding:0px;
 }
 
 
