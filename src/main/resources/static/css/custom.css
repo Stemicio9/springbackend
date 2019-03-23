@@ -59,6 +59,17 @@ h2, h3,h4, h5
 
     font-weight: bold;
 
+}
+
+h4.intestazione_titolo
+{
+    font-family: 'Raleway', sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizelegibility;
+    padding: 0px 10px 0px 10px;
+    color:#45A0A3;
+    font-weight: bold;
 
 }
 
@@ -588,6 +599,9 @@ ul.thumbnails {
 
 
 li { list-style-type:none;}
+
+
+
 
 /********************************/
 /*          Media Queries       */
