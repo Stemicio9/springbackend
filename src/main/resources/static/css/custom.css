@@ -600,6 +600,33 @@ ul.thumbnails {
 
 li { list-style-type:none;}
 
+#menutoggleS
+{
+
+    display:none;
+
+}
+
+
+#menuLaptop
+{
+    display: block;
+    width: 100%;
+    position:fixed;
+    top:0px;
+    background:#ffffff;
+    padding:10px;
+
+}
+
+.fas
+{
+    font-size:2em;
+}
+
+.fa-home , .fa-search, .fa-pencil-ruler , .fa-user
+{color: #27597c;}
+
 
 
 
@@ -608,7 +635,24 @@ li { list-style-type:none;}
 /********************************/
 
 @media only screen and (max-width: 767px){
-  .btn-facebook
+
+    #menuLaptop
+    {
+        display:none;
+    }
+
+
+    #menutoggleS
+    {
+        display: block;
+        width: 100%;
+        position:fixed;
+        bottom:0px;
+        background:#ffffff;
+    }
+
+
+    .btn-facebook
 {
     background-color: #3F639E;
     color: #fff;
