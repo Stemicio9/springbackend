@@ -12,10 +12,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import w1n.backend.springbackend.model.Annuncio;
 import w1n.backend.springbackend.model.User;
+import w1n.backend.springbackend.model.tipiutente.Datore;
+import w1n.backend.springbackend.model.tipiutente.Lavoratore;
+import w1n.backend.springbackend.services.AnnuncioService;
 import w1n.backend.springbackend.services.UserDetailService;
 
 
@@ -24,12 +29,18 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserDetailService userService;
+
+
+    @Autowired
+    private AnnuncioService annuncioService;
 
 
 
@@ -46,6 +57,52 @@ public class LoginController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
+
+
+    @RequestMapping(value = "/paginaprovapeppe", method = RequestMethod.GET)
+    public ModelAndView paginaprovapeppe() {
+       List<Annuncio> listaannunci = annuncioService.annunciIniziali();
+
+     //   annuncioService.annunciIniziali();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("pageNumber",0);
+        modelAndView.addObject("listaannunci",listaannunci);
+        modelAndView.setViewName("paginaprovapeppe");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/paginaprovapeppefiltered/{pageNumber}", method = RequestMethod.GET)
+    public ModelAndView paginaprovapeppefiltered(@PathVariable int pageNumber) {
+
+        int numeropagina = pageNumber;
+        if(numeropagina != 0){
+            numeropagina--;
+        }
+        annuncioService.annuncidopofiltro(numeropagina);
+        List<Annuncio> listaannunci = annuncioService.getAnnunciCorrente();
+        ModelAndView modelAndView = new ModelAndView();
+        //   annuncioService.annunciIniziali();
+        modelAndView.addObject("pageNumber",numeropagina);
+        modelAndView.addObject("listaannunci",listaannunci);
+        modelAndView.setViewName("paginaprovapeppe");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/paginaprovapeppefilteredavanti/{pageNumber}", method = RequestMethod.GET)
+    public ModelAndView paginaprovapeppefilteredavanti(@PathVariable int pageNumber) {
+        annuncioService.annuncidopofiltro(pageNumber+1);
+        List<Annuncio> listaannunci = annuncioService.getAnnunciCorrente();
+        ModelAndView modelAndView = new ModelAndView();
+
+        //   annuncioService.annunciIniziali();
+        modelAndView.addObject("pageNumber",pageNumber+1);
+        modelAndView.addObject("listaannunci",listaannunci);
+        modelAndView.setViewName("paginaprovapeppe");
+        return modelAndView;
+    }
+
+
+
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signup() {
@@ -121,10 +178,11 @@ public class LoginController {
 
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView createNewUser(@Valid Lavoratore user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
         User userExists = userService.findUserByEmail(user.getEmail());
+
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
@@ -138,15 +196,15 @@ public class LoginController {
 
             userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
-            modelAndView.setViewName("login");
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("dashboarduser");
 
         }
         return modelAndView;
     }
 
     @RequestMapping(value = "/signupdatore", method = RequestMethod.POST)
-    public ModelAndView creaDatore(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView creaDatore(@Valid Datore user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println("SONO ALL'INIZIO DEL METODO PER SALVARE IL DATORE");
         User userExists = userService.findUserByEmail(user.getEmail());
@@ -221,8 +279,9 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        System.out.println("AUTENTICATO COME " + auth.getName());
         modelAndView.addObject("currentUser", user);
-        modelAndView.addObject("fullName", "Welcome " + user.getFullname());
+        modelAndView.addObject("fullName", "Welcome " );// + user.getFullname()
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         modelAndView.setViewName("dashboarduser");
         return modelAndView;

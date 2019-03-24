@@ -53,12 +53,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/menulaptop").permitAll()
                 .antMatchers("/layoutdevice").permitAll()
                 .antMatchers("/signupdatore").permitAll()
+                .antMatchers("/dashboarduser").permitAll()
+                .antMatchers("/dashboarddatore").permitAll()
+                .antMatchers("/paginaprovapeppe").permitAll()
+                .antMatchers("/paginaprovapeppefiltered/**").permitAll()
+                .antMatchers("/paginaprovapeppefilteredavanti/**").permitAll()
                 .antMatchers("/signupamministratore").permitAll()
                 .antMatchers("/annunci").permitAll()
                 .antMatchers("/zone").permitAll()
                 .antMatchers("/tuttigliutenti").permitAll()
                 .antMatchers("/incentivifile").permitAll()
                 .antMatchers("/incentivitermici").permitAll()
+
                 .antMatchers("/dashboard/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin().successHandler(customizeAuthenticationSuccessHandler)
 

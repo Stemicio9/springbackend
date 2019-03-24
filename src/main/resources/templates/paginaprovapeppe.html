@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina prova peppe</title>
+
+
+    <style type="text/css">
+
+        .rosso {
+            color:red;
+        }
+
+
+    </style>
+
+
+    <script type="text/javascript">
+
+
+        function fun(){
+            document.getElementById("primo").innerText = "CIAO";
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+PAGINA PROVA PEPPE
+
+
+<ul th:each="annuncio : ${listaannunci}">
+    <li>
+        <a id="primo" class="rosso" th:text="${annuncio.id}"></a>
+        <a class="rosso" th:text="${annuncio.id}"></a>
+        <a th:text="${annuncio.name}"></a>
+    </li>
+</ul>
+
+<form th:action="@{/paginaprovapeppefiltered/} + ${pageNumber}" method="get">
+<button type="submit">   DIETRO   </button>
+</form>
+<a th:text="${pageNumber}"></a>
+<form th:action="@{/paginaprovapeppefilteredavanti/} + ${pageNumber}" method="get">
+    <button type="submit">   AVANTI   </button>
+</form>
+
+
+
+</body>
+</html>

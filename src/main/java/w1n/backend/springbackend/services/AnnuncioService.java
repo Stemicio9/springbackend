@@ -47,4 +47,62 @@ public class AnnuncioService {
         return bookPage;
     }
 
+
+
+
+
+
+
+
+
+
+    public List<Annuncio> listaannunci = new LinkedList<>();
+
+
+
+    public List<Annuncio> getAnnunciCorrente(){
+
+       return this.listaannunci;
+
+    }
+
+
+
+
+    public List<Annuncio> annunciIniziali(){
+        List<Annuncio> listaannunci = new LinkedList<>();
+
+        for(int i = 0 ; i< 10 ; i++){
+            Annuncio annuncio = new Annuncio();
+            annuncio.setName("NOME ANNUNCIO " + i);
+            annuncio.setId("ID ANNUNCIO " + i);
+            listaannunci.add(annuncio);
+        }
+        this.listaannunci = listaannunci;
+        return listaannunci;
+    }
+
+
+
+
+
+
+    public void annuncidopofiltro(int numeropaginacorrente){
+        List<Annuncio> listaannunci = new LinkedList<>();
+
+
+        for(int i = 10*numeropaginacorrente ; i< 10*numeropaginacorrente + 10 ; i++){
+            Annuncio annuncio = new Annuncio();
+            annuncio.setName("NOME ANNUNCIO " + i);
+            annuncio.setId("ID ANNUNCIO " + i);
+            listaannunci.add(annuncio);
+        }
+        this.listaannunci = listaannunci;
+      //  return listaannunci;
+    }
+
+
+
+
+
 }

@@ -26,7 +26,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
         // In questo metodo decidiamo dove indirizzare gli utenti in base al tipo utente
 
-
+        System.out.println("LOGGATO OK");
 
         for (GrantedAuthority auth : authentication.getAuthorities()) {
             if ("ADMIN".equals(auth.getAuthority())) {

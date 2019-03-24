@@ -11,8 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import w1n.backend.springbackend.model.Role;
 import w1n.backend.springbackend.model.User;
-import w1n.backend.springbackend.repositories.RoleRepository;
-import w1n.backend.springbackend.repositories.UserRepository;
+import w1n.backend.springbackend.model.tipiutente.Amministratore;
+import w1n.backend.springbackend.model.tipiutente.Datore;
+import w1n.backend.springbackend.model.tipiutente.Lavoratore;
+import w1n.backend.springbackend.repositories.*;
 
 import java.util.*;
 
@@ -24,6 +26,17 @@ public class UserDetailService  implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private LavoratoreRepository lavoratoreRepository;
+
+    @Autowired
+    private DatoreRepository datoreRepository;
+
+    @Autowired
+    private AmministratoreRepository amministratoreRepository;
+
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -32,22 +45,27 @@ public class UserDetailService  implements UserDetailsService {
     }
 
     // UTENTE = LAVORATORE = USER
-    // NDATORE = DATORE = DATORE
+    // DATORE = DATORE = DATORE
 
     public List<User> findAllUser(){
         return userRepository.findAll();
     }
 
 
-    public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
+    public void saveUser(Lavoratore lavoratore) {
+
+        System.out.println("SALVO LAVORATORE " + lavoratore.toString() + "   PW IN CHIARO " + lavoratore.getPassword());
+        lavoratore.setPassword(bCryptPasswordEncoder.encode(lavoratore.getPassword()));
+        lavoratore.setEnabled(true);
         Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        userRepository.save(user);
+        lavoratore.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        lavoratoreRepository.save(lavoratore);
+        userRepository.save(lavoratore);
     }
 
     public void salvauseradmin(User user) {
+        Amministratore amministratore = (Amministratore) user;
+        amministratoreRepository.save(amministratore);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
         Role userRole = roleRepository.findByRole("ADMIN");
@@ -55,13 +73,16 @@ public class UserDetailService  implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public boolean salvauserdatore(User user){
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
+    public boolean salvauserdatore(Datore datore){
+
+
+        datore.setPassword(bCryptPasswordEncoder.encode(datore.getPassword()));
+        datore.setEnabled(true);
         Role userRole = roleRepository.findByRole("DATORE");
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        datore.setRoles(new HashSet<>(Arrays.asList(userRole)));
         try {
-            userRepository.save(user);
+            userRepository.save(datore);
+            datoreRepository.save(datore);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -74,10 +95,15 @@ public class UserDetailService  implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(email);
+
         if(user != null) {
+
             List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-            return buildUserForAuthentication(user, authorities);
+            UserDetails userDetails = buildUserForAuthentication(user, authorities);
+            System.out.println(userDetails.getPassword());
+            return userDetails;
         } else {
+            System.out.println("NON HO TROVATO L'UTENTE");
             throw new UsernameNotFoundException("username not found");
         }
     }
