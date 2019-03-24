@@ -610,9 +610,9 @@ li { list-style-type:none;}
 
 #menuLaptop
 {
-    display: block;
+    display: flex;
     width: 100%;
-    position:fixed;
+
     top:0px;
     background:#ffffff;
     padding:10px;
@@ -649,6 +649,7 @@ li { list-style-type:none;}
         position:fixed;
         bottom:0px;
         background:#ffffff;
+        padding:10px;
     }
 
 

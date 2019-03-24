@@ -33,10 +33,10 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
                 response.sendRedirect("/dashboard");
             }
             if ("USER".equals(auth.getAuthority())) {
-                response.sendRedirect("/dashboarduser");
+                response.sendRedirect("/homelavoratore");
             }
             if ("DATORE".equals(auth.getAuthority())) {
-                response.sendRedirect("/dashboarddatore");
+                response.sendRedirect("/homedatore");
             }
         }
     }
