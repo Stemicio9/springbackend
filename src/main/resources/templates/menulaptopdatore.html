@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i" rel="stylesheet">
     <!-- Link css esterno principale -->
     <!-- <link rel = "stylesheet" type="text/css" href = "assets/css/html5reset-1.e6.1.css" /> -->
-    <link rel="stylesheet" href="/css/custom.css">
+
     <link rel="icon" href="/images/winavicon.ico" />
 
 
@@ -17,30 +17,22 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/css/csscamera.css">
+
     <meta name="google" value="notranslate">
 
-    <title>Layout device </title>
+    <title>Men&ugrave; laptop </title>
 </head>
 <body>
 
 
-
-
-
-
-
-
-<section style="height:7vh;" id="menuLaptop" th:insert="menuLaptop.html :: menulaptop">
-
-</section>
-
-<div style="height:93vh; overflow-y: scroll;" layout:fragment="contenutopagina"></div>
-
-
-<section id="menutoggleS" th:insert="menutoggle.html :: menutoggle">
-
-</section>
+<div class="container"  th:fragment="menulaptop">
+    <div class="row">
+        <div class="col-xs-3 text-center"><i class="fas fa-home"></i></div>
+        <div class="col-xs-3 text-center"><i class="fas fa-search"></i></div>
+        <div class="col-xs-3 text-center"><i class="fas fa-pencil-ruler"></i></div>
+        <div class="col-xs-3 text-center"><i class="fas fa-user"></i></div>
+    </div><!-- row -->
+</div><!-- container -->
 
 
 
